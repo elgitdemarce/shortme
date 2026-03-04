@@ -1,3 +1,4 @@
+export const runtime = "nodejs";
 import { brotliCompress } from "zlib";
 import { promisify } from "util";
 
