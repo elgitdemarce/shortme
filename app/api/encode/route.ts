@@ -1,8 +1,7 @@
 export const runtime = "nodejs";
-import { brotliCompress } from "zlib";
-import { promisify } from "util";
 
-const compress = promisify(brotliCompress);
+import { kv } from "@vercel/kv";
+import { nanoid } from "nanoid";
 
 export async function POST(req: Request) {
   try {
@@ -12,17 +11,12 @@ export async function POST(req: Request) {
       return Response.json({ error: "Invalid URL" }, { status: 400 });
     }
 
-    // Comprimir con Brotli (mejor ratio)
-    const compressed = await compress(Buffer.from(url), {
-      params: {
-        1: 11, // Brotli max quality
-      },
-    });
+    const code = nanoid(6);
 
-    const encoded = compressed.toString("base64url");
+    await kv.set(code, url);
 
     const base = process.env.NEXT_PUBLIC_BASE_URL;
-    const shortUrl = `${base}/${encoded}`;
+    const shortUrl = `${base}/${code}`;
 
     return Response.json({ shortUrl });
   } catch (err) {
