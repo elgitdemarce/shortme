@@ -1,3 +1,4 @@
+export const runtime = "nodejs";
 import { brotliDecompress } from "zlib";
 import { promisify } from "util";
 import { NextResponse } from "next/server";
