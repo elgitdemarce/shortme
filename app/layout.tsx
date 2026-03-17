@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Shortme",
+  title: "DEX URL Shortener",
   description: "Simple URL shortener",
 };
 
