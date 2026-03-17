@@ -72,7 +72,7 @@ export default function Home() {
 
         <input
           type="text"
-          placeholder="https://example.com/very/long/link"
+          placeholder="https://example.com/link/muy/largo"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
           style={{
